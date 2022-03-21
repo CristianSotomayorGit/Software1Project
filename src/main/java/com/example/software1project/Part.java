@@ -3,22 +3,22 @@ package com.example.software1project;
 import javafx.beans.property.*;
 
 public abstract class Part {
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty name = new SimpleStringProperty();
-    private final DoubleProperty price = new SimpleDoubleProperty();
-    private final IntegerProperty stock = new SimpleIntegerProperty();
-    private final IntegerProperty max = new SimpleIntegerProperty();
-    private final IntegerProperty min = new SimpleIntegerProperty();
+    private final IntegerProperty id;
+    private final StringProperty name;
+    private final DoubleProperty price;
+    private final IntegerProperty stock;
+    private final IntegerProperty max;
+    private final IntegerProperty min;
 
 
 
     public Part(Integer id, String name, Double price, Integer stock, Integer max, Integer min) {
-        setName(name);
-        setId(id);
-        setPrice(price);
-        setStock(stock);
-        setMax(max);
-        setMin(min);
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleDoubleProperty(price);
+        this.stock =  new SimpleIntegerProperty(stock);
+        this.max = new SimpleIntegerProperty(max);
+        this.min = new SimpleIntegerProperty(min);
     }
 
     //methods for manipulating id

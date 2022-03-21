@@ -1,5 +1,8 @@
 package com.example.software1project;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -92,19 +95,17 @@ public class MainController implements Initializable {
     @FXML
     TableColumn<Part, Integer> partId;
     @FXML
-    TableColumn<Part, Integer> partName;
+    TableColumn<Part, String> partName;
     @FXML
     TableColumn<Part, Integer> partStock;
     @FXML
     TableColumn<Part, Double> partPrice;
 
-    Part part;
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         partId.setCellValueFactory(new PropertyValueFactory<>("id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         partStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        mainPartTableView.setItems(Inventory.getAllParts());
     }
 }
