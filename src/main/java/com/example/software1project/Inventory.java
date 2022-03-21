@@ -6,9 +6,6 @@ import javafx.collections.ObservableList;
 
 public class Inventory {
 
-    Part part;
-    Product product;
-
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
 
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
@@ -24,14 +21,11 @@ public class Inventory {
     }
 
     public static Product lookupProduct(int productId) {
-        Product product = new Product(productId, "oop", 12, 5, 1, 10);
-        return product;
+        return allProducts.get(productId);
     }
 
     public static Part lookupPart(int partId) {
-        Part part;
-        part = new Part(partId, "oop", 12, 5, 1, 10);
-        return part;
+        return allParts.get(partId);
     }
 
     public static void updatePart(int index, Part selectedPart) {

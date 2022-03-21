@@ -1,5 +1,6 @@
 package com.example.software1project;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -83,6 +84,9 @@ public class MainController implements Initializable {
 
     }
 
+
+    ObservableList<Part> allParts = Inventory.getAllParts();
+
     @FXML
     public TableView<Part> mainPartTableView;
     @FXML
@@ -90,18 +94,17 @@ public class MainController implements Initializable {
     @FXML
     TableColumn<Part, Integer> partName;
     @FXML
-    TableColumn<Part, Double> partStock;
+    TableColumn<Part, Integer> partStock;
     @FXML
-    TableColumn<Part, Integer> partPrice;
+    TableColumn<Part, Double> partPrice;
 
+    Part part;
     @FXML
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        partId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        partId.setCellValueFactory(new PropertyValueFactory<>("id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         partStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         mainPartTableView.setItems(Inventory.getAllParts());
-
     }
 }

@@ -1,106 +1,142 @@
 package com.example.software1project;
 
-public class Part {
-    private int id;
-    private String name;
-    private double price;
-    private int stock;
-    private int min;
-    private int max;
+import javafx.beans.property.*;
 
-    public Part(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.min = min;
-        this.max = max;
+public abstract class Part {
+    private final IntegerProperty id = new SimpleIntegerProperty();
+    private final StringProperty name = new SimpleStringProperty();
+    private final DoubleProperty price = new SimpleDoubleProperty();
+    private final IntegerProperty stock = new SimpleIntegerProperty();
+    private final IntegerProperty max = new SimpleIntegerProperty();
+    private final IntegerProperty min = new SimpleIntegerProperty();
+
+
+
+    public Part(Integer id, String name, Double price, Integer stock, Integer max, Integer min) {
+        setName(name);
+        setId(id);
+        setPrice(price);
+        setStock(stock);
+        setMax(max);
+        setMin(min);
     }
 
+    //methods for manipulating id
 
+    public IntegerProperty idProperty(){
+        return id;
+    }
 
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    public final Integer getId() {
+        return idProperty().get();
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public final void setId(Integer id) {
+        idProperty().set(id);
+    }
+
+    //methods for manipulating name
+
+    public StringProperty nameProperty(){
+        return name;
     }
 
     /**
      * @return the name
      */
-    public String getName() {
-        return name;
+    public final String getName() {
+        return nameProperty().get();
     }
 
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public final void setName(String name) {
+        nameProperty().set(name);
+    }
+
+    //methods for manipulating price
+    public DoubleProperty priceProperty(){
+        return price;
     }
 
     /**
      * @return the price
      */
-    public double getPrice() {
-        return price;
+    public final Double getPrice() {
+        return priceProperty().get();
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
-        this.price = price;
+    public final void setPrice(Double price) {
+        priceProperty().set(price);
+    }
+
+    //methods for manipulating stock
+
+    public IntegerProperty stockProperty(){
+        return stock;
     }
 
     /**
      * @return the stock
      */
-    public int getStock() {
-        return stock;
+    public final Integer getStock() {
+        return stockProperty().get();
     }
 
     /**
      * @param stock the stock to set
      */
-    public void setStock(int stock) {
-        this.stock = stock;
+    public final void setStock(Integer stock) {
+        stockProperty().set(stock);
     }
 
-    /**
-     * @return the min
-     */
-    public int getMin() {
-        return min;
-    }
+    //methods for manipulating max
 
-    /**
-     * @param min the min to set
-     */
-    public void setMin(int min) {
-        this.min = min;
-    }
-
-    /**
-     * @return the max
-     */
-    public int getMax() {
+    public IntegerProperty maxProperty(){
         return max;
+    }
+
+    /**
+     * @return the stock
+     */
+    public final Integer getMax() {
+        return maxProperty().get();
     }
 
     /**
      * @param max the max to set
      */
-    public void setMax(int max) {
-        this.max = max;
+    public final void setMax(Integer max) {
+        maxProperty().set(max);
     }
 
+    //methods for manipulating min
+
+    public IntegerProperty minProperty(){
+        return min;
+    }
+
+    /**
+     * @return the min
+     */
+    public final Integer getMin() {
+        return minProperty().get();
+    }
+
+    /**
+     * @param min the min to set
+     */
+    public final void setMin(Integer min) {
+        minProperty().set(min);
+    }
 }
