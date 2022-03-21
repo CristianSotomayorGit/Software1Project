@@ -1,10 +1,8 @@
 package com.example.software1project;
 
 import javafx.collections.ObservableList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class Product {
     private int id;
     private String name;
@@ -13,11 +11,7 @@ public class Product {
     private int min;
     private int max;
 
-    @Autowired
-    Part part = new Part()
-    Product product = new Product();
-
-
+    private Part part;
 
     private ObservableList <Part> associatedParts;
 
@@ -28,10 +22,6 @@ public class Product {
         this.stock = stock;
         this.min = min;
         this.max = max;
-    }
-
-    public Product() {
-
     }
 
     /**
@@ -118,9 +108,9 @@ public class Product {
         this.max = max;
     }
 
+
     public void addAssociatedPart(Part part) {
         this.part = part;
-
     }
 
     public boolean deleteAssociatePart(Part selectedAssociatedPart){

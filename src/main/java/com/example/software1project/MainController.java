@@ -10,8 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -96,23 +94,14 @@ public class MainController implements Initializable {
     @FXML
     TableColumn<Part, Integer> partPrice;
 
-    private Inventory inventory = new Inventory();
-
     @FXML
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        partId.setCellValueFactory(new PropertyValueFactory<>(inventory.getId()));
+        partId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         partName.setCellValueFactory(new PropertyValueFactory<>("name"));
         partStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        mainPartTableView.setItems(inventory.getAllParts());
-
-        inventory.getId();
-        partId.setCellValueFactory(new PropertyValueFactory<Part,Integer>(inventory.getId().toString()));
-        partName.setCellValueFactory(new PropertyValueFactory<Part,Integer>(inventory.getId()));
-        partStock.setCellValueFactory(cellData -> cellData.getValue().getStock());
-        partPrice.setCellValueFactory(cellData -> cellData.getValue().getPrice());
-        mainPartTableView.setItems(inventory.getAllParts());
+        mainPartTableView.setItems(Inventory.getAllParts());
 
     }
 }
