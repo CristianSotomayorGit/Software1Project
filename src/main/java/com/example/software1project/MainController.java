@@ -6,34 +6,38 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class MainController implements Initializable {
+
+
 
     @FXML
     private Button addPartBtn;
 
     @FXML
-    void onAddPartButtonClick() throws IOException{
+    void onAddPartButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addpart.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("Add Part");
         stage.setScene(new Scene(root1));
         stage.show();
-
     }
 
     @FXML
     private Button modPartBtn;
 
     @FXML
-    void onModPartButtonClick() throws IOException{
+    void onModPartButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifypart.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -47,7 +51,7 @@ public class Controller implements Initializable{
     private Button addProdBtn;
 
     @FXML
-    void onAddProdButtonClick() throws IOException{
+    void onAddProdButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addproduct.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -61,7 +65,7 @@ public class Controller implements Initializable{
     private Button modProdBtn;
 
     @FXML
-    void onModProdButtonClick() throws IOException{
+    void onModProdButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyproduct.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -75,13 +79,40 @@ public class Controller implements Initializable{
     private Button exitBtn;
 
     @FXML
-    void oneExitButtonClick() throws IOException{
+    void oneExitButtonClick() throws IOException {
         Stage stage = (Stage) exitBtn.getScene().getWindow();
         stage.close();
 
     }
-    @Override
+
+    @FXML
+    public TableView<Part> mainPartTableView;
+    @FXML
+    TableColumn<Part, Integer> partId;
+    @FXML
+    TableColumn<Part, Integer> partName;
+    @FXML
+    TableColumn<Part, Double> partStock;
+    @FXML
+    TableColumn<Part, Integer> partPrice;
+
+    private Inventory inventory = new Inventory();
+
+    @FXML
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        partId.setCellValueFactory(new PropertyValueFactory<>(inventory.getId()));
+        partName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        mainPartTableView.setItems(inventory.getAllParts());
+
+        inventory.getId();
+        partId.setCellValueFactory(new PropertyValueFactory<Part,Integer>(inventory.getId().toString()));
+        partName.setCellValueFactory(new PropertyValueFactory<Part,Integer>(inventory.getId()));
+        partStock.setCellValueFactory(cellData -> cellData.getValue().getStock());
+        partPrice.setCellValueFactory(cellData -> cellData.getValue().getPrice());
+        mainPartTableView.setItems(inventory.getAllParts());
 
     }
 }
