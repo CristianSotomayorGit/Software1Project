@@ -1,166 +1,91 @@
 package com.example.software1project;
 
-import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 public class Product {
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty name = new SimpleStringProperty();
-    private final DoubleProperty price = new SimpleDoubleProperty();
-    private final IntegerProperty stock = new SimpleIntegerProperty();
-    private final IntegerProperty max = new SimpleIntegerProperty();
-    private final IntegerProperty min = new SimpleIntegerProperty();
 
-    private Part part;
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
-    private ObservableList <Part> associatedParts;
+    private int id;
+    private String name;
+    private int stock;
+    private double price;
+    private int minimum;
+    private int maximum;
 
-    public Product(int id, String name, double price, int stock, int min, int max) {
-        setName(name);
-        setId(id);
-        setPrice(price);
-        setStock(stock);
-        setMax(max);
-        setMin(min);
+    public Product(int id, String name, int stock, double price, int minimum, int maximum) {
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+        this.minimum = minimum;
+        this.maximum = maximum;
     }
 
-//methods for manipulating id
+    public Product() {
+        this(0, null, 0, 0.00, 0, 0);
+    }
 
-    public IntegerProperty idProperty(){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setMinimum(int minimum) {
+        this.minimum = minimum;
+    }
+
+    public void setMaximum(int maximum) {
+        this.maximum = maximum;
+    }
+
+    public int getId() {
         return id;
     }
 
-    /**
-     * @return the id
-     */
-    public final Integer getId() {
-        return idProperty().get();
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public final void setId(Integer id) {
-        idProperty().set(id);
-    }
-
-    //methods for manipulating name
-
-    public StringProperty nameProperty(){
+    public String getName() {
         return name;
     }
 
-    /**
-     * @return the name
-     */
-    public final String getName() {
-        return nameProperty().get();
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public final void setName(String name) {
-        nameProperty().set(name);
-    }
-
-    //methods for manipulating price
-    public DoubleProperty priceProperty(){
-        return price;
-    }
-
-    /**
-     * @return the price
-     */
-    public final Double getPrice() {
-        return priceProperty().get();
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public final void setPrice(Double price) {
-        priceProperty().set(price);
-    }
-
-    //methods for manipulating stock
-
-    public IntegerProperty stockProperty(){
+    public int getStock() {
         return stock;
     }
 
-    /**
-     * @return the stock
-     */
-    public final Integer getStock() {
-        return stockProperty().get();
+    public double getPrice() {
+        return price;
     }
 
-    /**
-     * @param stock the stock to set
-     */
-    public final void setStock(Integer stock) {
-        stockProperty().set(stock);
+    public int getMinimum() {
+        return minimum;
     }
 
-    //methods for manipulating max
-
-    public IntegerProperty maxProperty(){
-        return max;
+    public int getMaximum() {
+        return maximum;
     }
 
-    /**
-     * @return the stock
-     */
-    public final Integer getMax() {
-        return maxProperty().get();
+
+    public void addAssociatedPart(Part part){
+        this.associatedParts.addAll(part);
     }
 
-    /**
-     * @param max the max to set
-     */
-    public final void setMax(Integer max) {
-        maxProperty().set(max);
+    public void deleteAssociatedPart(ObservableList<Part> part){
+        this.associatedParts.removeAll(part);
     }
 
-    //methods for manipulating min
-
-    public IntegerProperty minProperty(){
-        return min;
-    }
-
-    /**
-     * @return the min
-     */
-    public final Integer getMin() {
-        return minProperty().get();
-    }
-
-    /**
-     * @param min the min to set
-     */
-    public final void setMin(Integer min) {
-        minProperty().set(min);
-    }
-
-    public void addAssociatedPart(Part part) {
-        this.part = part;
-    }
-
-    public boolean deleteAssociatePart(Part selectedAssociatedPart){
-        part = selectedAssociatedPart;
-        boolean bool = false;
-        if (bool)
-            bool = true;
-        else bool = false;
-
-        return bool;
-    }
-
-    public Part getAllAssociatedParts() {
-        Part allAssociatedParts = null;
-
-        return allAssociatedParts;
+    public ObservableList<Part> getAllAssociatedParts(){
+        return associatedParts;
     }
 }
